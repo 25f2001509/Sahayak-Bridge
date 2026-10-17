@@ -717,3 +717,9 @@ body {
     top: auto !important;
   }
 }
+/* ── UPI Modal Mobile Scroll Fix ───────────────── */
+.modal-card {
+  max-height: 85vh !important; /* Screen se bada na ho */
+  overflow-y: auto !important; /* Modal ke andar scroll on karein */
+  -webkit-overflow-scrolling: touch;
+}
