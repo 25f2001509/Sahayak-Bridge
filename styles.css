@@ -681,19 +681,39 @@ body {
   color: #4b5563;
 }
 
-/* ── Responsive ───────────────────────────────────── */
-@media (max-width: 900px) {
+/* ── Responsive (Mobile Scroll Fix) ───────────────── */
+@media (max-width: 1023px) {
+  html,
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
   main {
-    flex-direction: column;
-    height: auto;
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   #vendor-panel,
   #bridge-panel,
   #student-panel {
     width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
     border-right: none;
-    border-bottom: 1px solid var(--border);
-    min-height: 380px;
+    border-bottom: 2px solid var(--border-hi);
+    min-height: auto;
+    padding-bottom: 16px;
+  }
+
+  /* Mobile pe sticky sub-headers ko normal rakho taaki woh jagah na gherein */
+  #vendor-panel > .sticky,
+  #bridge-panel > .sticky,
+  #student-panel > .sticky {
+    position: relative !important;
+    top: auto !important;
   }
 }
