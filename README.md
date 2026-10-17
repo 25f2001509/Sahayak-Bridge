@@ -1,7 +1,6 @@
 # SahayakBridge (सहायक ब्रिज) 🌉
 *Bridging Informal Campus Vendors & Digital-Native Students*
 
-Built solo for **Devlympics @ NSUT Dwarka** under the theme "Bridge the Gap".
 
 ### 🚀 Live Demo
 * [**Live App**](https://shiny-creponne-520bdd.netlify.app/)
