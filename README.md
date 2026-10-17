@@ -4,7 +4,7 @@
 Built solo for **Devlympics @ NSUT Dwarka** under the theme "Bridge the Gap".
 
 ### 🚀 Live Demo
-* **Live App:** [View Netlify Deployment](YOUR_NETLIFY_URL_HERE)
+* **Live App:** [View Netlify Deployment]([YOUR_NETLIFY_URL_HERE](https://shiny-creponne-520bdd.netlify.app/))
 
 ### 💡 What It Does
 * **Side A (Vendor Mode):** Zero-typing Hinglish voice input and touch-friendly icon grid for local tiffin and laundry vendors around NSUT.
