@@ -1,0 +1,699 @@
+/* ============================================================
+   SahayakBridge — styles.css
+   Indie student dev aesthetic · Zinc/Slate neutrals
+   Crafted solo for Devlympics @ NSUT Dwarka
+   ============================================================ */
+
+/* ── Root & Design Tokens ─────────────────────────── */
+:root {
+  /* New colour palette — warm but restrained */
+  --accent: #fca16d;
+  /* terracotta, like old Delhi walls */
+  --accent-warm: #f5ac52;
+  /* chai amber */
+  --moss: #4a8060;
+  /* muted greens */
+  --steel: #3d6070;
+  /* slate teal */
+  --ink: #e2e8f0;
+  --ink-dim: #94a3b8;
+  --ink-faint: #475569;
+  --bg: #0a0d12;
+  --bg-card: #13161d;
+  --bg-hover: #1a1e26;
+  --border: #1f2330;
+  --border-hi: #2e3347;
+
+  /* Legacy aliases – keep for inline JS references */
+  --orange: #ff9d64;
+  --saffron: #c4945a;
+  --green: #4a8060;
+  --teal: #3d6070;
+  --dark: #0f1117;
+  --darker: #0a0d12;
+  --card: #13161d;
+  --muted: #6b7280;
+
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+}
+
+
+
+/* ── Reset & Base ─────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hi);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4055;
+}
+
+/* ── Glass Header ──────────────────────────────────── */
+.glass-header {
+  background: rgba(1, 62, 63, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Bridge Logo ──────────────────────────────────── */
+.logo-inner {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(250, 135, 69, 0.12);
+  border: 1px solid rgba(212, 105, 42, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Demo Buttons ─────────────────────────────────── */
+.demo-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s;
+}
+
+.demo-btn:hover::after {
+  transform: translateX(100%);
+}
+
+.demo-btn.running {
+  animation: demoPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes demoPulse {
+  from {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+/* ── Section Labels ──────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+
+/* ── Room Pills ───────────────────────────────────── */
+.room-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.room-pill:hover {
+  border-color: var(--border-hi);
+  background: var(--bg-hover);
+  transform: translateX(3px);
+}
+
+.room-pill.selected {
+  border-color: rgba(212, 105, 42, 0.45);
+  background: rgba(212, 105, 42, 0.07);
+}
+
+.room-number {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.room-names {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.room-balance {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-warm);
+}
+
+/* ── Mic Button ───────────────────────────────────── */
+.mic-btn-outer {
+  position: relative;
+}
+
+.mic-pulse-ring,
+.mic-pulse-ring2 {
+  border: 1.5px solid rgba(212, 105, 42, 0.35);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s;
+}
+
+.mic-btn-outer.listening .mic-pulse-ring {
+  opacity: 1;
+  animation: micRing1 1.3s ease-out infinite;
+}
+
+.mic-btn-outer.listening .mic-pulse-ring2 {
+  opacity: 1;
+  animation: micRing1 1.3s ease-out 0.45s infinite;
+}
+
+@keyframes micRing1 {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+.voice-wave-canvas {
+  background: rgba(212, 105, 42, 0.04);
+  border: 1px solid rgba(212, 105, 42, 0.12);
+}
+
+/* ── Voice Section Box ────────────────────────────── */
+.voice-section {
+  border-radius: 14px;
+  border: 1px solid rgba(212, 105, 42, 0.2);
+  background: rgba(212, 105, 42, 0.04);
+}
+
+/* ── Item Cards ───────────────────────────────────── */
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.item-card:hover {
+  border-color: var(--border-hi);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+
+.item-card.has-count {
+  border-color: rgba(196, 148, 90, 0.4);
+  background: rgba(196, 148, 90, 0.06);
+}
+
+.item-emoji {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.item-name-hi {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: var(--font-devanagari);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.item-name-en {
+  font-size: 9px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.item-price {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-warm);
+}
+
+.item-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.counter-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  border: 1px solid var(--border-hi);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  line-height: 1;
+}
+
+.counter-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.counter-btn:active {
+  transform: scale(0.88);
+}
+
+.counter-value {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--accent-warm);
+  min-width: 20px;
+  text-align: center;
+}
+
+.item-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 1.5px solid var(--bg);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 900;
+  color: white;
+}
+
+.item-card.has-count .item-badge {
+  display: flex;
+}
+
+/* ── Pipeline Steps ───────────────────────────────── */
+.pipeline-step {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pipeline-step.active {
+  opacity: 1 !important;
+  border-color: rgba(109, 95, 160, 0.4);
+}
+
+.pipeline-step.done {
+  opacity: 1 !important;
+  border-color: rgba(74, 128, 96, 0.4);
+}
+
+.pipeline-step.active .step-number {
+  background: #4c3d84;
+  color: #d4c8f7;
+}
+
+.pipeline-step.done .step-number {
+  background: #2d5e41;
+  color: #86d4a5;
+}
+
+/* ── Confidence Log ───────────────────────────────── */
+#confidence-log {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.65;
+}
+
+.log-line {
+  animation: fadeInUp 0.25s ease-out;
+}
+
+.log-success {
+  color: #6ab893;
+}
+
+.log-warning {
+  color: #d4a85a;
+}
+
+.log-error {
+  color: #c97070;
+}
+
+.log-info {
+  color: #7eacd6;
+}
+
+.log-hinglish {
+  color: #b88dd4;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── JSON Preview ─────────────────────────────────── */
+#json-preview {
+  tab-size: 2;
+  line-height: 1.65;
+}
+
+/* ── Ledger Table ─────────────────────────────────── */
+#ledger-tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+
+#ledger-tbody tr:hover {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+#ledger-tbody tr.credit-row {
+  background: rgba(74, 128, 96, 0.04);
+}
+
+#ledger-tbody tr.new-entry {
+  animation: rowIn 0.45s ease-out;
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    background: rgba(109, 95, 160, 0.15);
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    background: transparent;
+    transform: translateX(0);
+  }
+}
+
+/* ── Balance Cards ────────────────────────────────── */
+.balance-card {
+  transition: all 0.25s;
+}
+
+.balance-card.updated {
+  animation: balanceFlash 0.55s ease-out;
+}
+
+@keyframes balanceFlash {
+  0% {
+    box-shadow: none;
+  }
+
+  40% {
+    box-shadow: 0 0 14px rgba(196, 148, 90, 0.25);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+/* ── Activity Feed ────────────────────────────────── */
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 5px 7px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  animation: fadeInUp 0.25s ease-out;
+}
+
+.activity-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* ── Modal ────────────────────────────────────────── */
+#settlement-modal {
+  display: none;
+}
+
+#settlement-modal.show {
+  display: flex;
+  animation: fadeIn 0.18s ease-out;
+}
+
+.modal-card {
+  animation: slideInScale 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Toast Notifications ──────────────────────────── */
+.toast {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hi);
+  border-radius: 10px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  box-shadow: 0 6px 24px rgba(241, 240, 240, 0.45);
+  animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: all;
+  min-width: 220px;
+  max-width: 340px;
+}
+
+.toast.toast-success {
+  border-left: 2px solid #4a8060;
+}
+
+.toast.toast-info {
+  border-left: 2px solid #3d6070;
+}
+
+.toast.toast-warning {
+  border-left: 2px solid var(--accent-warm);
+}
+
+.toast.toast-error {
+  border-left: 2px solid #a05050;
+}
+
+.toast.hide {
+  animation: toastOut 0.25s ease-in forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* ── Active Student Room Button ───────────────────── */
+.student-room-btn.active-room {
+  border-color: rgba(97, 165, 124, 0.45);
+  background: rgba(74, 128, 96, 0.08);
+  color: #7dc8a0;
+}
+
+/* ── Bridge Gear Spin (subtle) ────────────────────── */
+.bridge-spin {
+  animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Shimmer skeleton ─────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.018) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.018) 100%);
+  background-size: 200% 100%;
+  animation: shimmerAnim 1.8s infinite;
+}
+
+@keyframes shimmerAnim {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ── WhatsApp card ────────────────────────────────── */
+#whatsapp-card {
+  white-space: pre-wrap;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+/* ── Animated Number Flash ────────────────────────── */
+.count-up {
+  animation: countUp 0.28s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(1.25);
+    color: var(--accent-warm);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ── Footer ───────────────────────────────────────── */
+#main-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+  font-size: 10px;
+  color: var(--muted);
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+#main-footer strong {
+  color: #cde2ff;
+  font-weight: 600;
+}
+
+#main-footer em {
+  font-style: italic;
+  color: #4b5563;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #vendor-panel,
+  #bridge-panel,
+  #student-panel {
+    width: 100% !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 380px;
+  }
+}
