@@ -13,7 +13,7 @@ const ROOMS = {
   '102': { names: ['Priya', 'Nisha'], residents: ['Priya', 'Nisha'] },
   '104': { names: ['Arjun', 'Dev'], residents: ['Arjun', 'Dev'] },
   '205': { names: ['Sneha', 'Meera', 'Ritu'], residents: ['Sneha', 'Meera', 'Ritu'] },
-  '302': { names: ['Avroop', 'Rohan', 'Kabir'], residents: ['Avroop', 'Rohan', 'Kabir'] },
+  '302': { names: ['Sahil', 'Rohan', 'Kabir'], residents: ['Sahil', 'Rohan', 'Kabir'] },
 };
 
 // Each item belongs strictly to either 'tiffin' (Eatables) or 'laundry' (Kapde)
@@ -57,9 +57,9 @@ const HINDI_NUMBERS = {
 
 const DEMOS = {
   1: {
-    text: 'Room 302 mein Avroop aur Rohan ke 2 Special Thali aur 4 Extra Roti likh do',
+    text: 'Room 302 mein Sahil aur Rohan ke 2 Special Thali aur 4 Extra Roti likh do',
     room: '302',
-    buyers: ['Avroop', 'Rohan'], // Split between 2 people
+    buyers: ['Sahil', 'Rohan'], // Split between 2 people
     items: [{ id: 'thali', qty: 2 }, { id: 'roti', qty: 4 }],
     type: 'order',
   },
@@ -88,7 +88,7 @@ const DEMOS = {
 
 const STATE = {
   selectedRoom: '302',
-  selectedBuyers: ['Avroop', 'Rohan', 'Kabir'], // Who is buying the next order (1, 2, or 3 people)
+  selectedBuyers: ['Sahil', 'Rohan', 'Kabir'], // Who is buying the next order (1, 2, or 3 people)
   studentRoom: '302',
   itemCounts: {},
   voiceActive: false,
@@ -171,8 +171,8 @@ function seedData() {
 
   // Room 302: Mix of 1-person, 2-person, and 3-person orders across Eatables & Laundry
   STATE.ledger['302'] = [
-    createOrderEntry('302', [{ id: 'thali', qty: 3, price: 80 }, { id: 'roti', qty: 3, price: 10 }], ['Avroop', 'Rohan', 'Kabir'], now - 86400000 * 3, 'All 3 ordered dinner thali'),
-    createOrderEntry('302', [{ id: 'laundry', qty: 6, price: 15 }], ['Avroop'], now - 86400000 * 2, 'Avroop personal laundry (1 person)'),
+    createOrderEntry('302', [{ id: 'thali', qty: 3, price: 80 }, { id: 'roti', qty: 3, price: 10 }], ['Sahil', 'Rohan', 'Kabir'], now - 86400000 * 3, 'All 3 ordered dinner thali'),
+    createOrderEntry('302', [{ id: 'laundry', qty: 6, price: 15 }], ['Sahil'], now - 86400000 * 2, 'Sahil personal laundry (1 person)'),
     createOrderEntry('302', [{ id: 'maggi', qty: 2, price: 40 }, { id: 'chai', qty: 2, price: 20 }], ['Rohan', 'Kabir'], now - 86400000 * 1, 'Rohan & Kabir late night snacks (2 people)'),
     createOrderEntry('302', [{ id: 'laundry', qty: 4, price: 15 }], ['Rohan', 'Kabir'], now - 3600000 * 6, 'Rohan & Kabir laundry press (2 people)'),
   ];
@@ -1162,7 +1162,7 @@ function updateStudentDashboard() {
   if (label) label.textContent = `— Room ${roomId} (${room.names.join(', ')})`;
 
   // Update the 3 resident cards with total + vendor breakdown tooltip
-  const slots = ['avroop', 'rohan', 'kabir'];
+  const slots = ['Sahil', 'rohan', 'kabir'];
   const balances = STATE.balances[roomId] || {};
   const vBal = STATE.vendorBalances[roomId] || { tiffin: { total: 0, byResident: {} }, laundry: { total: 0, byResident: {} } };
 
