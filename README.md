@@ -14,3 +14,5 @@
 * 100% Vanilla HTML5, Tailwind CSS, JavaScript (Zero-backend, 100% offline-proof via `localStorage`).
 * Web Speech API (`SpeechRecognition` & `speechSynthesis`) for bilingual voice interaction.
 * `QRCode.js` for instant dynamic UPI settlement generation.
+
+99% Code written by AI (Claude, Gemini)
